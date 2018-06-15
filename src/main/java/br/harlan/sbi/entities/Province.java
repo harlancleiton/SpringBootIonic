@@ -1,5 +1,7 @@
 package br.harlan.sbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class Province implements Serializable {
 
     private String uf;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "province")
     private List<City> cities;
 

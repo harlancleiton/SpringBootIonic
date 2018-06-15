@@ -1,5 +1,7 @@
 package br.harlan.sbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,6 +15,7 @@ public class City implements Serializable {
 
     private String name;
 
+    @JsonManagedReference
     @ManyToOne
     //@JoinColumn(name = "province_id")
     private Province province;
