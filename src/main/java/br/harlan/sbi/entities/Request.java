@@ -3,6 +3,8 @@ package br.harlan.sbi.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Request implements Serializable {
@@ -19,6 +21,8 @@ public class Request implements Serializable {
 
     @ManyToOne
     private Client client;
+
+    private Set<RequestItem> requestItems;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "request")
     private Payment payment;
@@ -70,6 +74,16 @@ public class Request implements Serializable {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public Set<RequestItem> getRequestItems() {
+        if (requestItems == null)
+            requestItems = new HashSet<>();
+        return requestItems;
+    }
+
+    public void setRequestItems(Set<RequestItem> requestItems) {
+        this.requestItems = requestItems;
     }
 
     @Override
