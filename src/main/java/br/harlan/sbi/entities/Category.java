@@ -12,13 +12,14 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    @Column
+    private String name;
 
     public Category() {
     }
 
-    public Category(String nome) {
-        this.nome = nome;
+    public Category(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -29,12 +30,12 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -54,7 +55,7 @@ public class Category implements Serializable {
     public String toString() {
         return "Category{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
