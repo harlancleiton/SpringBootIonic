@@ -1,4 +1,4 @@
-package br.harlan.sbi.services.exceptions;
+package br.harlan.sbi.exceptions;
 
 import java.io.Serializable;
 

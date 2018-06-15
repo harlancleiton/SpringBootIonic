@@ -1,8 +1,8 @@
-package br.harlan.sbi.controllers.exceptions;
+package br.harlan.sbi.handlers;
 
+import br.harlan.sbi.exceptions.ObjectNotFoundException;
 import br.harlan.sbi.response.Response;
 import br.harlan.sbi.response.StandardError;
-import br.harlan.sbi.services.exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

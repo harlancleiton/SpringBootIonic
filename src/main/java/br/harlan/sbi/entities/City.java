@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table
 public class City implements Serializable {
     private static final long serialVersionUID = 6908846354025918361L;
 
@@ -12,7 +11,6 @@ public class City implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String name;
 
     @ManyToOne

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
 public class Product implements Serializable {
     private static final long serialVersionUID = -544067476073048548L;
 
@@ -16,10 +15,8 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String name;
 
-    @Column
     private Double price;
 
     @JsonBackReference

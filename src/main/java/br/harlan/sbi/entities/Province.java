@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
 public class Province implements Serializable {
     private static final long serialVersionUID = -5209563794310848492L;
 
@@ -14,10 +13,8 @@ public class Province implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String name;
 
-    @Column
     private String uf;
 
     @OneToMany(mappedBy = "province")

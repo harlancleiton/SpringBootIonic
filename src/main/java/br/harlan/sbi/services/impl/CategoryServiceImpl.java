@@ -1,9 +1,9 @@
 package br.harlan.sbi.services.impl;
 
 import br.harlan.sbi.entities.Category;
+import br.harlan.sbi.exceptions.ObjectNotFoundException;
 import br.harlan.sbi.repositories.CategoryRepository;
 import br.harlan.sbi.services.CategoryService;
-import br.harlan.sbi.services.exceptions.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
