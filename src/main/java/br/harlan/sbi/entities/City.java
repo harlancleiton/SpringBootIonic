@@ -17,7 +17,6 @@ public class City implements Serializable {
 
     @JsonManagedReference
     @ManyToOne
-    //@JoinColumn(name = "province_id")
     private Province province;
 
     public City() {

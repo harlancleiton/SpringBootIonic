@@ -21,7 +21,7 @@ public class Province implements Serializable {
 
     @JsonBackReference
     @OneToMany(mappedBy = "province")
-    private List<City> cities;
+    private List<City> cities = new ArrayList<>();
 
     public Province() {
     }

@@ -19,7 +19,7 @@ public class Category implements Serializable {
 
     @JsonManagedReference
     @ManyToMany(mappedBy = "categories")
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
     public Category() {
     }

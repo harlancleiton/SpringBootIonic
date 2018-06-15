@@ -21,8 +21,8 @@ public class Address implements Serializable {
 
     private String cep;
 
-//    @OneToOne
-//    private Client client;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Client client;
 
     @OneToOne
     private City city;
@@ -78,13 +78,13 @@ public class Address implements Serializable {
         this.cep = cep;
     }
 
-//    public Client getClient() {
-//        return client;
-//    }
-//
-//    public void setClient(Client client) {
-//        this.client = client;
-//    }
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public City getCity() {
         return city;

@@ -27,6 +27,9 @@ public class Client implements Serializable {
     @OneToMany
     private List<Telephone> telephones;
 
+    @OneToMany
+    private List<Request> requests;
+
     @Enumerated(EnumType.ORDINAL)
     private ClientType clientType;
 
@@ -91,6 +94,16 @@ public class Client implements Serializable {
         this.clientType = clientType;
     }
 
+    public List<Request> getRequests() {
+        if (requests == null)
+            requests = new ArrayList<>();
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -112,7 +125,6 @@ public class Client implements Serializable {
                 ", email='" + email + '\'' +
                 ", cpfCnpj='" + cpfCnpj + '\'' +
                 ", address=" + address +
-                ", telephones=" + telephones +
                 ", clientType=" + clientType +
                 '}';
     }

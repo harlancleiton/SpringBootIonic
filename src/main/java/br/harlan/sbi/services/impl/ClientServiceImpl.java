@@ -1,6 +1,7 @@
 package br.harlan.sbi.services.impl;
 
 import br.harlan.sbi.entities.Client;
+import br.harlan.sbi.exceptions.ObjectNotFoundException;
 import br.harlan.sbi.repositories.ClientRepository;
 import br.harlan.sbi.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,10 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Optional<Client> findById(Long id) {
-        return clientRepository.findById(id);
+        Optional<Client> client = clientRepository.findById(id);
+        if (!client.isPresent())
+            throw new ObjectNotFoundException("Object not found. Id: " + id + ". Class: " + Client.class.getName());
+        return client;
     }
 
     @Override

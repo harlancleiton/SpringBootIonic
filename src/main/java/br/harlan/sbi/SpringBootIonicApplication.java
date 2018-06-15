@@ -2,12 +2,14 @@ package br.harlan.sbi;
 
 import br.harlan.sbi.entities.*;
 import br.harlan.sbi.enuns.ClientType;
+import br.harlan.sbi.enuns.PaymentStatus;
 import br.harlan.sbi.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -26,6 +28,10 @@ public class SpringBootIonicApplication implements CommandLineRunner {
     private AddressRepository addressRepository;
     @Autowired
     private TelephoneRepository telephoneRepository;
+    @Autowired
+    private RequestRepository requestRepository;
+    @Autowired
+    private PaymentRepository paymentRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootIonicApplication.class, args);
@@ -95,7 +101,7 @@ public class SpringBootIonicApplication implements CommandLineRunner {
         address.setNumber("0");
         address.setDistrict("Pituba");
         address.setCep("40000000");
-        //address.setClient(client);
+        address.setClient(client);
         address.setCity(city);
         client.setAddress(address);
 
@@ -104,7 +110,7 @@ public class SpringBootIonicApplication implements CommandLineRunner {
         address1.setNumber("666");
         address1.setDistrict("Avenida Zorro");
         address1.setCep("74847153");
-        //address1.setClient(client1);
+        address1.setClient(client1);
         address1.setCity(city2);
         client1.setAddress(address1);
 
@@ -115,5 +121,19 @@ public class SpringBootIonicApplication implements CommandLineRunner {
         telephoneRepository.saveAll(Arrays.asList(telephone, telephone1));
         addressRepository.saveAll(Arrays.asList(address, address1));
         clientRepository.saveAll(Arrays.asList(client, client1));
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Request request = new Request(simpleDateFormat.parse("30/09/2017 17:41"), client, address);
+        Request request1 = new Request(simpleDateFormat.parse("30/09/2017 09:28"), client1, address1);
+        Payment payment = new PaymentCard(PaymentStatus.PAID_OUT, request, 5);
+        request.setPayment(payment);
+        Payment payment1 = new PaymentTicket(PaymentStatus.PENDING, request1,
+                simpleDateFormat.parse("30/11/2017 03:25"));
+        request1.setPayment(payment1);
+
+        client.getRequests().addAll(Arrays.asList(request, request1));
+
+        requestRepository.saveAll(Arrays.asList(request, request1));
+        paymentRepository.saveAll(Arrays.asList(payment, payment1));
     }
 }
