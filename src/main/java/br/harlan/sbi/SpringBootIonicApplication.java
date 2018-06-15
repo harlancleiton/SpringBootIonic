@@ -1,13 +1,8 @@
 package br.harlan.sbi;
 
-import br.harlan.sbi.entities.Category;
-import br.harlan.sbi.entities.City;
-import br.harlan.sbi.entities.Product;
-import br.harlan.sbi.entities.Province;
-import br.harlan.sbi.repositories.CategoryRepository;
-import br.harlan.sbi.repositories.CityRepository;
-import br.harlan.sbi.repositories.ProductRepository;
-import br.harlan.sbi.repositories.ProvinceRepository;
+import br.harlan.sbi.entities.*;
+import br.harlan.sbi.enuns.ClientType;
+import br.harlan.sbi.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +20,12 @@ public class SpringBootIonicApplication implements CommandLineRunner {
     private ProvinceRepository provinceRepository;
     @Autowired
     private CityRepository cityRepository;
+    @Autowired
+    private ClientRepository clientRepository;
+    @Autowired
+    private AddressRepository addressRepository;
+    @Autowired
+    private TelephoneRepository telephoneRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootIonicApplication.class, args);
@@ -69,9 +70,50 @@ public class SpringBootIonicApplication implements CommandLineRunner {
         province.getCities().addAll(Arrays.asList(city, city1));
         province1.getCities().add(city2);
 
+        Telephone telephone = new Telephone();
+        telephone.setCodeProvince("71");
+        telephone.setTelephone("991487946");
+        Telephone telephone1 = new Telephone();
+        telephone1.setCodeProvince("71");
+        telephone1.setTelephone("30478489");
+
+        Client client = new Client();
+        Client client1 = new Client();
+
+        client.setName("Maria Silva");
+        client.setClientType(ClientType.PHYSICAL_PERSON);
+        client.setCpfCnpj("87782461480");
+        client.getTelephones().add(telephone);
+
+        client1.setName("João Silva");
+        client1.setClientType(ClientType.LEGAL_PERSON);
+        client1.setCpfCnpj("51418224278");
+        client1.getTelephones().add(telephone1);
+
+        Address address = new Address();
+        address.setStreet("Rua dos Bobos");
+        address.setNumber("0");
+        address.setDistrict("Pituba");
+        address.setCep("40000000");
+        //address.setClient(client);
+        address.setCity(city);
+        client.setAddress(address);
+
+        Address address1 = new Address();
+        address1.setStreet("Rua Paulista");
+        address1.setNumber("666");
+        address1.setDistrict("Avenida Zorro");
+        address1.setCep("74847153");
+        //address1.setClient(client1);
+        address1.setCity(city2);
+        client1.setAddress(address1);
+
         categoryRepository.saveAll(Arrays.asList(category, category1));
         productRepository.saveAll(Arrays.asList(product, product1, product2));
         provinceRepository.saveAll(Arrays.asList(province, province1));
         cityRepository.saveAll(Arrays.asList(city, city1, city2));
+        telephoneRepository.saveAll(Arrays.asList(telephone, telephone1));
+        addressRepository.saveAll(Arrays.asList(address, address1));
+        clientRepository.saveAll(Arrays.asList(client, client1));
     }
 }
