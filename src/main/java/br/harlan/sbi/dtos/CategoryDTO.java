@@ -8,7 +8,7 @@ public class CategoryDTO {
 
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Name can not be empty.")
     @Length(min = 2, max = 20, message = "The size must be between 3 and 20 characters.")
     private String name;
 
