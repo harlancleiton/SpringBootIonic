@@ -1,4 +1,4 @@
-package br.harlan.sbi.enuns;
+package br.harlan.sbi.domain.enuns;
 
 public enum ClientType {
     PHYSICAL_PERSON(0, "PHYSICAL_PERSON"),

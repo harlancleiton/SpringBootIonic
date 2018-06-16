@@ -1,6 +1,6 @@
-package br.harlan.sbi.controllers;
+package br.harlan.sbi.resources;
 
-import br.harlan.sbi.entities.Category;
+import br.harlan.sbi.domain.Category;
 import br.harlan.sbi.response.Response;
 import br.harlan.sbi.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/categories")
 @CrossOrigin(origins = "*")
-public class CategoryController {
+public class CategoryResource {
     @Autowired
     CategoryService categoryService;
 

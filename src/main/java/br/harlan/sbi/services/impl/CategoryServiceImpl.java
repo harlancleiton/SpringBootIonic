@@ -1,6 +1,6 @@
 package br.harlan.sbi.services.impl;
 
-import br.harlan.sbi.entities.Category;
+import br.harlan.sbi.domain.Category;
 import br.harlan.sbi.exceptions.ObjectNotFoundException;
 import br.harlan.sbi.repositories.CategoryRepository;
 import br.harlan.sbi.services.CategoryService;

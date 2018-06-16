@@ -1,6 +1,6 @@
 package br.harlan.sbi.repositories;
 
-import br.harlan.sbi.entities.Province;
+import br.harlan.sbi.domain.Province;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

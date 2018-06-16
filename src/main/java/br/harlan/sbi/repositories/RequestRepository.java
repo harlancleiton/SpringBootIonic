@@ -1,6 +1,6 @@
 package br.harlan.sbi.repositories;
 
-import br.harlan.sbi.entities.Request;
+import br.harlan.sbi.domain.Request;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

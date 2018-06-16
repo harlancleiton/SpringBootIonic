@@ -1,6 +1,6 @@
-package br.harlan.sbi.entities;
+package br.harlan.sbi.domain;
 
-import br.harlan.sbi.enuns.ClientType;
+import br.harlan.sbi.domain.enuns.ClientType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 

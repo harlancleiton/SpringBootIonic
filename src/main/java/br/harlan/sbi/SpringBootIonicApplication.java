@@ -1,8 +1,8 @@
 package br.harlan.sbi;
 
-import br.harlan.sbi.entities.*;
-import br.harlan.sbi.enuns.ClientType;
-import br.harlan.sbi.enuns.PaymentStatus;
+import br.harlan.sbi.domain.*;
+import br.harlan.sbi.domain.enuns.ClientType;
+import br.harlan.sbi.domain.enuns.PaymentStatus;
 import br.harlan.sbi.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,6 +1,6 @@
-package br.harlan.sbi.entities;
+package br.harlan.sbi.domain;
 
-import br.harlan.sbi.enuns.PaymentStatus;
+import br.harlan.sbi.domain.enuns.PaymentStatus;
 
 import javax.persistence.Entity;
 

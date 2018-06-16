@@ -1,6 +1,6 @@
 package br.harlan.sbi.services;
 
-import br.harlan.sbi.entities.Client;
+import br.harlan.sbi.domain.Client;
 
 import java.util.Optional;
 

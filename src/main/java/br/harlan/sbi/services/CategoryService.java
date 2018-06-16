@@ -1,6 +1,6 @@
 package br.harlan.sbi.services;
 
-import br.harlan.sbi.entities.Category;
+import br.harlan.sbi.domain.Category;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

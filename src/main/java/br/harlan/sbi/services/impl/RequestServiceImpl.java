@@ -1,6 +1,6 @@
 package br.harlan.sbi.services.impl;
 
-import br.harlan.sbi.entities.Request;
+import br.harlan.sbi.domain.Request;
 import br.harlan.sbi.exceptions.ObjectNotFoundException;
 import br.harlan.sbi.repositories.RequestRepository;
 import br.harlan.sbi.services.RequestService;

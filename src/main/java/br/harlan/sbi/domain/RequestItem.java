@@ -1,4 +1,4 @@
-package br.harlan.sbi.entities;
+package br.harlan.sbi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

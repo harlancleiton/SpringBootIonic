@@ -1,4 +1,4 @@
-package br.harlan.sbi.enuns;
+package br.harlan.sbi.domain.enuns;
 
 public enum PaymentStatus {
     PENDING(0, "PENDING"),
