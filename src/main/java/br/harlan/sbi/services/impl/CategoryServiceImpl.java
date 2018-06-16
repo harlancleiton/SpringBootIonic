@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +29,11 @@ public class CategoryServiceImpl implements CategoryService {
             throw new ObjectNotFoundException("Object not found. Id: " + id + ". Class: " + category.getClass().getName());
         ;
         return category;
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 
     @Override

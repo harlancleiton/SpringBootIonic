@@ -3,6 +3,7 @@ package br.harlan.sbi.services;
 import br.harlan.sbi.domain.Category;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,4 +17,6 @@ public interface CategoryService {
     Category update(Category category);
 
     void delete(Long id);
+
+    List<Category> findAll();
 }

@@ -1,6 +1,7 @@
 package br.harlan.sbi.resources;
 
 import br.harlan.sbi.domain.Category;
+import br.harlan.sbi.dtos.CategoryDTO;
 import br.harlan.sbi.response.Response;
 import br.harlan.sbi.services.CategoryService;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,6 +31,17 @@ public class CategoryResource {
         Optional<Category> category = categoryService.findById(id);
         Response<Category> response = new Response<>();
         response.setData(category.get());
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<Response<List<CategoryDTO>>> findAll() {
+        LOGGER.info("Finding all Categories.");
+        List<Category> categories = categoryService.findAll();
+        List<CategoryDTO> categoryDTOs = new ArrayList<>();
+        categories.forEach(category -> categoryDTOs.add(new CategoryDTO(category)));
+        Response<List<CategoryDTO>> response = new Response<>();
+        response.setData(categoryDTOs);
         return ResponseEntity.ok().body(response);
     }
 

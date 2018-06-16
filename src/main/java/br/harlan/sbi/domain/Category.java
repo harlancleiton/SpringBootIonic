@@ -1,7 +1,5 @@
 package br.harlan.sbi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ public class Category implements Serializable {
 
     private String name;
 
-    @JsonIgnore
+    ///@JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
 
