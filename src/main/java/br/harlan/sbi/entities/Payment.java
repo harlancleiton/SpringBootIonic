@@ -1,6 +1,7 @@
 package br.harlan.sbi.entities;
 
 import br.harlan.sbi.enuns.PaymentStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,8 +14,10 @@ public abstract class Payment implements Serializable {
     @Id
     private Long id;
 
+    @Enumerated(EnumType.ORDINAL)
     private PaymentStatus paymentStatus;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "request_id")
     @MapsId
@@ -34,6 +37,22 @@ public abstract class Payment implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
     }
 
     @Override

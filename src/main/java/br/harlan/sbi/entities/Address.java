@@ -1,5 +1,7 @@
 package br.harlan.sbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -21,6 +23,7 @@ public class Address implements Serializable {
 
     private String cep;
 
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     private Client client;
 

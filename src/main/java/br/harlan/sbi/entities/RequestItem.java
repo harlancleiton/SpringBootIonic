@@ -1,5 +1,7 @@
 package br.harlan.sbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.io.Serializable;
@@ -8,6 +10,7 @@ import java.io.Serializable;
 public class RequestItem implements Serializable {
     private static final long serialVersionUID = 2335885604844882206L;
 
+    @JsonIgnore
     @EmbeddedId
     private RequestItemPK id;
 
@@ -28,6 +31,7 @@ public class RequestItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Request getRequest() {
         return id.getRequest();
     }

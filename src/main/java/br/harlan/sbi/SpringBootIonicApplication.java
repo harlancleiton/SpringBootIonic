@@ -137,7 +137,7 @@ public class SpringBootIonicApplication implements CommandLineRunner {
 
         requestRepository.saveAll(Arrays.asList(request, request1));
         paymentRepository.saveAll(Arrays.asList(payment, payment1));
-
+        clientRepository.save(client);
 
         RequestItem requestItem = new RequestItem(request, product, 0.00, 1, 2000.00);
         RequestItem requestItem1 = new RequestItem(request, product2, 0.00, 2, 200.00);

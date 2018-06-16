@@ -1,6 +1,8 @@
 package br.harlan.sbi.entities;
 
 import br.harlan.sbi.enuns.ClientType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,12 +23,14 @@ public class Client implements Serializable {
 
     private String cpfCnpj;
 
+    @JsonManagedReference
     @OneToOne
     private Address address;
 
     @OneToMany
     private List<Telephone> telephones;
 
+    @JsonBackReference
     @OneToMany
     private List<Request> requests;
 

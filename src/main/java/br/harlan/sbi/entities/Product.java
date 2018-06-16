@@ -1,6 +1,7 @@
 package br.harlan.sbi.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +22,7 @@ public class Product implements Serializable {
 
     private Double price;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.product")
     private Set<RequestItem> requestItems;
 
@@ -38,6 +40,7 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public List<Request> getRequests() {
         List<Request> requests = new ArrayList<>();
         for (RequestItem requestItem : requestItems)

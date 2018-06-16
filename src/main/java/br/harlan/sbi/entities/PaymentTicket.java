@@ -1,6 +1,7 @@
 package br.harlan.sbi.entities;
 
 import br.harlan.sbi.enuns.PaymentStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -9,7 +10,10 @@ import java.util.Date;
 public class PaymentTicket extends Payment {
     private static final long serialVersionUID = 5915360530999426148L;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date paymentDate;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date saleDate;
 
     public PaymentTicket() {

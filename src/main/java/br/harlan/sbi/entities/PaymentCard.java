@@ -18,6 +18,14 @@ public class PaymentCard extends Payment {
         this.numberParcels = numberParcels;
     }
 
+    public Integer getNumberParcels() {
+        return numberParcels;
+    }
+
+    public void setNumberParcels(Integer numberParcels) {
+        this.numberParcels = numberParcels;
+    }
+
     @Override
     public String toString() {
         return "PaymentCard{" +

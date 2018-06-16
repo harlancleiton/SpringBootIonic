@@ -1,5 +1,8 @@
 package br.harlan.sbi.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,17 +17,20 @@ public class Request implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instante;
 
     @ManyToOne
     private Address address;
 
+    @JsonManagedReference
     @ManyToOne
     private Client client;
 
     @OneToMany(mappedBy = "id.request")
     private Set<RequestItem> requestItems;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "request")
     private Payment payment;
 
