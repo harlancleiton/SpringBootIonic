@@ -11,6 +11,11 @@ public class Response<T> {
     public Response() {
     }
 
+    public Response(T data, List<StandardError> errors) {
+        this.data = data;
+        this.errors = errors;
+    }
+
     public T getData() {
         return data;
     }

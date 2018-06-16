@@ -1,13 +1,20 @@
 package br.harlan.sbi.entities;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.io.Serializable;
 
+@Entity
 public class RequestItem implements Serializable {
     private static final long serialVersionUID = 2335885604844882206L;
 
+    @EmbeddedId
     private RequestItemPK id;
+
     private Double discount;
+
     private Integer amount;
+
     private Double price;
 
     public RequestItem() {

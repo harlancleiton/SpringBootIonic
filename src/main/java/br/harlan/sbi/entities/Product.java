@@ -21,6 +21,7 @@ public class Product implements Serializable {
 
     private Double price;
 
+    @OneToMany(mappedBy = "id.product")
     private Set<RequestItem> requestItems;
 
     @JsonBackReference

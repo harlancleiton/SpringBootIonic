@@ -32,6 +32,8 @@ public class SpringBootIonicApplication implements CommandLineRunner {
     private RequestRepository requestRepository;
     @Autowired
     private PaymentRepository paymentRepository;
+    @Autowired
+    private RequestItemRepository requestItemRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootIonicApplication.class, args);
@@ -135,5 +137,19 @@ public class SpringBootIonicApplication implements CommandLineRunner {
 
         requestRepository.saveAll(Arrays.asList(request, request1));
         paymentRepository.saveAll(Arrays.asList(payment, payment1));
+
+
+        RequestItem requestItem = new RequestItem(request, product, 0.00, 1, 2000.00);
+        RequestItem requestItem1 = new RequestItem(request, product2, 0.00, 2, 200.00);
+        RequestItem requestItem2 = new RequestItem(request1, product1, 100.00, 1, 800.00);
+
+        request.getRequestItems().addAll(Arrays.asList(requestItem, requestItem1));
+        request1.getRequestItems().add(requestItem2);
+
+        product.getRequestItems().add(requestItem);
+        product1.getRequestItems().add(requestItem2);
+        product2.getRequestItems().add(requestItem1);
+
+        requestItemRepository.saveAll(Arrays.asList(requestItem, requestItem1, requestItem2));
     }
 }

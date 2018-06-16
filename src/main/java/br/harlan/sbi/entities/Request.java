@@ -22,6 +22,7 @@ public class Request implements Serializable {
     @ManyToOne
     private Client client;
 
+    @OneToMany(mappedBy = "id.request")
     private Set<RequestItem> requestItems;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "request")

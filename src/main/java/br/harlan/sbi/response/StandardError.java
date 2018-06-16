@@ -8,6 +8,12 @@ public class StandardError {
     public StandardError() {
     }
 
+    public StandardError(Integer status, String message, Long timeStamp) {
+        this.status = status;
+        this.message = message;
+        this.timeStamp = timeStamp;
+    }
+
     public Integer getStatus() {
         return status;
     }
