@@ -1,6 +1,6 @@
 package br.harlan.sbi.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +17,7 @@ public class Category implements Serializable {
 
     private String name;
 
-    @JsonManagedReference
+    @JsonIgnore
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
 

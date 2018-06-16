@@ -1,6 +1,5 @@
 package br.harlan.sbi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -26,7 +25,7 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "id.product")
     private Set<RequestItem> requestItems;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     //@JoinTable(name = "PRODUCT_CATEGORY", joinColumns = @JoinColumn(name = "product_id"),
     //        inverseJoinColumns = @JoinColumn(name = "category_id"))

@@ -3,10 +3,14 @@ package br.harlan.sbi.resources;
 import br.harlan.sbi.domain.Category;
 import br.harlan.sbi.response.Response;
 import br.harlan.sbi.services.CategoryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.Optional;
 
 @RestController
@@ -16,11 +20,24 @@ public class CategoryResource {
     @Autowired
     CategoryService categoryService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryResource.class);
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Response<Category>> find(@PathVariable Long id) {
         Optional<Category> category = categoryService.findById(id);
         Response<Category> response = new Response<>();
         response.setData(category.get());
         return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<Response<Category>> save(@RequestBody Category category) {
+        LOGGER.info("Category: {}", category);
+        Response<Category> response = new Response<>();
+        category = categoryService.insert(category);
+        response.setData(category);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(category.getId()).toUri();
+        return ResponseEntity.created(uri).body(response);
     }
 }

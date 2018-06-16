@@ -1,7 +1,6 @@
 package br.harlan.sbi.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,14 +22,12 @@ public class Request implements Serializable {
     @ManyToOne
     private Address address;
 
-    @JsonManagedReference
     @ManyToOne
     private Client client;
 
     @OneToMany(mappedBy = "id.request")
     private Set<RequestItem> requestItems;
 
-    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "request")
     private Payment payment;
 

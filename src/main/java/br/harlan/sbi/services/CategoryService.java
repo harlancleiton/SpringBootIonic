@@ -11,5 +11,5 @@ public interface CategoryService {
 
     Optional<Category> findByName(String name);
 
-    Category save(Category category);
+    Category insert(Category category);
 }

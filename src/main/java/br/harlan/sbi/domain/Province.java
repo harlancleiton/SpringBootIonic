@@ -1,6 +1,6 @@
 package br.harlan.sbi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,7 +19,7 @@ public class Province implements Serializable {
 
     private String uf;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "province")
     private List<City> cities = new ArrayList<>();
 

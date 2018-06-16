@@ -35,7 +35,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category save(Category category) {
+    public Category insert(Category category) {
+        category.setId(null);
         LOGGER.info("Persisting category: {}", category);
         return categoryRepository.save(category);
     }

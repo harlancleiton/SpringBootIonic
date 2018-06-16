@@ -1,6 +1,6 @@
 package br.harlan.sbi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +23,7 @@ public class Address implements Serializable {
 
     private String cep;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private Client client;
 

@@ -1,7 +1,7 @@
 package br.harlan.sbi.domain;
 
 import br.harlan.sbi.domain.enuns.PaymentStatus;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +17,7 @@ public abstract class Payment implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     private PaymentStatus paymentStatus;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "request_id")
     @MapsId
