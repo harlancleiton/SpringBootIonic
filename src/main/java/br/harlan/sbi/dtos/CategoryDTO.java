@@ -1,18 +1,23 @@
 package br.harlan.sbi.dtos;
 
-import br.harlan.sbi.domain.Category;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotEmpty;
 
 public class CategoryDTO {
 
     private Long id;
+
+    @NotEmpty
+    @Length(min = 2, max = 20, message = "The size must be between 3 and 20 characters.")
     private String name;
 
     public CategoryDTO() {
     }
 
-    public CategoryDTO(Category category) {
-        this.id = category.getId();
-        this.name = category.getName();
+    public CategoryDTO(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Long getId() {
