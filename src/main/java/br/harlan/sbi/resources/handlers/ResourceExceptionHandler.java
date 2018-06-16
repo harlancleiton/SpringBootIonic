@@ -6,6 +6,8 @@ import br.harlan.sbi.response.StandardError;
 import br.harlan.sbi.response.ValidationError;
 import br.harlan.sbi.services.exceptions.DataIntegrityException;
 import br.harlan.sbi.services.exceptions.ObjectNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -16,8 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResourceExceptionHandler.class);
+
     @ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<Response> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
+        LOGGER.error("ObjectNotFoundException: {}", e.getMessage());
         StandardError standardError = new StandardError();
         standardError.setStatus(HttpStatus.NOT_FOUND.value());
         standardError.setMessage(e.getMessage());
@@ -31,6 +36,7 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(DataIntegrityException.class)
     public ResponseEntity<Response> dataIntegrity(DataIntegrityException e, HttpServletRequest request) {
+        LOGGER.error("DataIntegrityException: {}", e.getMessage());
         StandardError standardError = new StandardError();
         standardError.setStatus(HttpStatus.BAD_REQUEST.value());
         standardError.setMessage(e.getMessage());
@@ -44,6 +50,7 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Response> notValidException(MethodArgumentNotValidException e, HttpServletRequest request) {
+        LOGGER.error("MethodArgumentNotValidException: {}", e.getMessage());
         String message = "An error occurred in the validation of the data";
         ValidationError validationError = new ValidationError(
                 HttpStatus.BAD_REQUEST.value(), message, System.currentTimeMillis(), null);

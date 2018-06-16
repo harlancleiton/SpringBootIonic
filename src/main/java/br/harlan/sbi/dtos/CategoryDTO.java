@@ -3,8 +3,10 @@ package br.harlan.sbi.dtos;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
-public class CategoryDTO {
+public class CategoryDTO implements Serializable {
+    private static final long serialVersionUID = 169082800829548417L;
 
     private Long id;
 

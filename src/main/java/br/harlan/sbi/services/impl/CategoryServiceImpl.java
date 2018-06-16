@@ -60,7 +60,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category update(Category category) {
-        findById(category.getId());
+        LOGGER.info("Updating category: {}", category);
+        Optional<Category> updateCategory = findById(category.getId());
+        category = updateData(updateCategory, category);
         return categoryRepository.save(category);
     }
 
@@ -73,6 +75,11 @@ public class CategoryServiceImpl implements CategoryService {
             throw new DataIntegrityException(
                     "It is not possible to exclude a Category containing Products", e.getCause());
         }
+    }
 
+    private Category updateData(Optional<Category> optionalCategory, Category category) {
+        Category updateCategory = optionalCategory.get();
+        updateCategory.setName(category.getName());
+        return updateCategory;
     }
 }
