@@ -4,14 +4,16 @@ public class StandardError {
     private Integer status;
     private String message;
     private Long timeStamp;
+    private String cause;
 
     public StandardError() {
     }
 
-    public StandardError(Integer status, String message, Long timeStamp) {
+    public StandardError(Integer status, String message, Long timeStamp, String cause) {
         this.status = status;
         this.message = message;
         this.timeStamp = timeStamp;
+        this.cause = cause;
     }
 
     public Integer getStatus() {
@@ -38,12 +40,21 @@ public class StandardError {
         this.timeStamp = timeStamp;
     }
 
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
+
     @Override
     public String toString() {
         return "StandardError{" +
                 "status=" + status +
                 ", message='" + message + '\'' +
                 ", timeStamp=" + timeStamp +
+                ", cause='" + cause + '\'' +
                 '}';
     }
 }

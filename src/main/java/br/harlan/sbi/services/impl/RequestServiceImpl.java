@@ -1,9 +1,9 @@
 package br.harlan.sbi.services.impl;
 
 import br.harlan.sbi.domain.Request;
-import br.harlan.sbi.exceptions.ObjectNotFoundException;
 import br.harlan.sbi.repositories.RequestRepository;
 import br.harlan.sbi.services.RequestService;
+import br.harlan.sbi.services.exceptions.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

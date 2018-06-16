@@ -12,4 +12,8 @@ public interface CategoryService {
     Optional<Category> findByName(String name);
 
     Category insert(Category category);
+
+    Category update(Category category);
+
+    void delete(Long id);
 }

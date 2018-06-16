@@ -1,9 +1,9 @@
 package br.harlan.sbi.services.impl;
 
 import br.harlan.sbi.domain.Client;
-import br.harlan.sbi.exceptions.ObjectNotFoundException;
 import br.harlan.sbi.repositories.ClientRepository;
 import br.harlan.sbi.services.ClientService;
+import br.harlan.sbi.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

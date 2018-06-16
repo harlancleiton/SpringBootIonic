@@ -24,6 +24,7 @@ public class CategoryResource {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Response<Category>> find(@PathVariable Long id) {
+        LOGGER.info("Finding Category by Id: {}", id);
         Optional<Category> category = categoryService.findById(id);
         Response<Category> response = new Response<>();
         response.setData(category.get());
@@ -31,13 +32,28 @@ public class CategoryResource {
     }
 
     @PostMapping
-    public ResponseEntity<Response<Category>> save(@RequestBody Category category) {
-        LOGGER.info("Category: {}", category);
+    public ResponseEntity<Response<Category>> insert(@RequestBody Category category) {
+        LOGGER.info("Inserting Category: {}", category);
         Response<Category> response = new Response<>();
         category = categoryService.insert(category);
         response.setData(category);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(category.getId()).toUri();
         return ResponseEntity.created(uri).body(response);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@RequestBody Category category, @PathVariable Long id) {
+        LOGGER.info("Updating Category: {}", category);
+        category.setId(id);
+        categoryService.update(category);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        LOGGER.info("Deleting Category by Id: {}", id);
+        categoryService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
