@@ -7,6 +7,7 @@ import br.harlan.sbi.services.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -18,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/categories")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class CategoryResource {
     @Autowired
     CategoryService categoryService;
@@ -42,6 +43,21 @@ public class CategoryResource {
         categories.forEach(category -> categoryDTOs.add(new CategoryDTO(category)));
         Response<List<CategoryDTO>> response = new Response<>();
         response.setData(categoryDTOs);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(value = "/page")
+    public ResponseEntity<Response<Page<CategoryDTO>>> findPage(
+            @RequestParam(name = "page", defaultValue = "0") Integer page,
+            @RequestParam(name = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(name = "direction", defaultValue = "ASC") String direction,
+            @RequestParam(name = "orderBy", defaultValue = "name") String orderBy
+    ) {
+        LOGGER.info("Finding Categories by Page: {}, LinesPerPage: {}, OrderBy: {}, Direction: {}", page, linesPerPage, orderBy, direction);
+        Response<Page<CategoryDTO>> response = new Response<Page<CategoryDTO>>();
+        Page<Category> categoryPage = categoryService.findPage(page, linesPerPage, direction, orderBy);
+        Page<CategoryDTO> categoryDTOPage = categoryPage.map(category -> new CategoryDTO(category));
+        response.setData(categoryDTOPage);
         return ResponseEntity.ok().body(response);
     }
 

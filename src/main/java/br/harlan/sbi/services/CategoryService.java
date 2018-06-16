@@ -1,6 +1,7 @@
 package br.harlan.sbi.services;
 
 import br.harlan.sbi.domain.Category;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface CategoryService {
     void delete(Long id);
 
     List<Category> findAll();
+
+    Page<Category> findPage(Integer page, Integer linesPerPage, String direction, String orderBy);
 }
