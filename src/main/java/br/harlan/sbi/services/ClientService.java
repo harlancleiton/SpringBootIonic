@@ -13,6 +13,8 @@ public interface ClientService {
 
     Optional<Client> findByEmail(String email);
 
+    Optional<Client> findByCpfCnpj(String cpf);
+
     Client insert(Client client);
 
     Client update(Client client);

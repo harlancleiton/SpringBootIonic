@@ -1,7 +1,7 @@
 package br.harlan.sbi.dtos;
 
+import br.harlan.sbi.services.validators.InsertClient;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
+@InsertClient
 public class ClientRegistrationDTO implements Serializable {
     private static final long serialVersionUID = 3454406018777249023L;
 
@@ -20,9 +21,11 @@ public class ClientRegistrationDTO implements Serializable {
     @Email(message = "Invalid email.")
     private String email;
 
-    @NotEmpty(message = "CPF can not be empty.")
-    @CPF(message = "Invalid CPF.")
-    private String cpf;
+    //@NotEmpty(message = "CPF can not be empty.")
+    //@CPF(message = "Invalid CPF.")
+    private String cpfCnpj;
+
+    private String clientType;
 
     @Valid
     private AddressDTO address;
@@ -53,12 +56,12 @@ public class ClientRegistrationDTO implements Serializable {
         this.email = email;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCpfCnpj() {
+        return cpfCnpj;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
     }
 
     public AddressDTO getAddress() {
@@ -77,12 +80,21 @@ public class ClientRegistrationDTO implements Serializable {
         this.telephones = telephones;
     }
 
+    public String getClientType() {
+        return clientType;
+    }
+
+    public void setClientType(String clientType) {
+        this.clientType = clientType;
+    }
+
     @Override
     public String toString() {
         return "ClientRegistrationDTO{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", cpf='" + cpf + '\'' +
+                ", cpfCnpj='" + cpfCnpj + '\'' +
+                ", clientType='" + clientType + '\'' +
                 ", address=" + address +
                 ", telephones=" + telephones +
                 '}';

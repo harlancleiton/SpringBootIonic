@@ -40,7 +40,6 @@ public class ClientServiceImpl implements ClientService {
         Optional<Client> client = clientRepository.findById(id);
         if (!client.isPresent())
             throw new ObjectNotFoundException("Object not found. Id: " + id + ". Class: " + client.getClass().getName());
-        ;
         return client;
     }
 
@@ -50,7 +49,15 @@ public class ClientServiceImpl implements ClientService {
         Optional<Client> client = clientRepository.findByEmail(email);
         if (!client.isPresent())
             throw new ObjectNotFoundException("Object not found. Email: " + email + ". Class: " + client.getClass().getName());
-        ;
+        return client;
+    }
+
+    @Override
+    public Optional<Client> findByCpfCnpj(String cpf) {
+        LOGGER.info("Looking for client by CPF: {}", cpf);
+        Optional<Client> client = clientRepository.findByEmail(cpf);
+        if (!client.isPresent())
+            throw new ObjectNotFoundException("Object not found. Email: " + cpf + ". Class: " + client.getClass().getName());
         return client;
     }
 

@@ -18,8 +18,10 @@ public class Client implements Serializable {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
     private String cpfCnpj;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -20,7 +20,7 @@ public class ClientFactory {
         Client client = new Client();
         client.setEmail(clientRegistrationDTO.getEmail());
         client.setName(clientRegistrationDTO.getName());
-        client.setCpfCnpj(clientRegistrationDTO.getCpf());
+        client.setCpfCnpj(clientRegistrationDTO.getCpfCnpj());
         client.setClientType(ClientType.PHYSICAL_PERSON);
         client.setAddress(AddressFactory.create(clientRegistrationDTO.getAddress()));
         clientRegistrationDTO.getTelephones().forEach(telephoneDTO ->
