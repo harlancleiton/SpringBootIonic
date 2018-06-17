@@ -2,6 +2,7 @@ package br.harlan.sbi.resources;
 
 import br.harlan.sbi.domain.Client;
 import br.harlan.sbi.dtos.ClientDTO;
+import br.harlan.sbi.dtos.ClientRegistrationDTO;
 import br.harlan.sbi.factories.domain.ClientFactory;
 import br.harlan.sbi.factories.dtos.ClientDTOFactory;
 import br.harlan.sbi.response.Response;
@@ -40,9 +41,9 @@ public class ClientResource {
     @GetMapping
     public ResponseEntity<Response<List<ClientDTO>>> findAll() {
         LOGGER.info("Finding all Categories.");
-        List<Client> categories = clientService.findAll();
+        List<Client> clients = clientService.findAll();
         List<ClientDTO> clientDTOs = new ArrayList<>();
-        categories.forEach(client -> clientDTOs.add(ClientDTOFactory.create(client)));
+        clients.forEach(client -> clientDTOs.add(ClientDTOFactory.create(client)));
         Response<List<ClientDTO>> response = new Response<>();
         response.setData(clientDTOs);
         return ResponseEntity.ok().body(response);
@@ -64,10 +65,10 @@ public class ClientResource {
     }
 
     @PostMapping
-    public ResponseEntity<Response<ClientDTO>> insert(@Valid @RequestBody ClientDTO clientDTO) {
-        LOGGER.info("Inserting Client: {}", clientDTO);
+    public ResponseEntity<Response<ClientDTO>> insert(@Valid @RequestBody ClientRegistrationDTO clientRegistrationDTO) {
+        LOGGER.info("Inserting Client: {}", clientRegistrationDTO);
         Response<ClientDTO> response = new Response<>();
-        Client client = ClientFactory.create(clientDTO);
+        Client client = ClientFactory.create(clientRegistrationDTO);
         client = clientService.insert(client);
         response.setData(ClientDTOFactory.create(client));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

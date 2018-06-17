@@ -22,10 +22,10 @@ public class Client implements Serializable {
 
     private String cpfCnpj;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Telephone> telephones;
 
     @JsonIgnore

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -40,6 +41,7 @@ public class SpringBootIonicApplication implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         Category category = new Category("Informatica");
         Category category1 = new Category("Escritorio");
@@ -118,11 +120,12 @@ public class SpringBootIonicApplication implements CommandLineRunner {
 
         categoryRepository.saveAll(Arrays.asList(category, category1));
         productRepository.saveAll(Arrays.asList(product, product1, product2));
-        provinceRepository.saveAll(Arrays.asList(province, province1));
-        cityRepository.saveAll(Arrays.asList(city, city1, city2));
+
+        clientRepository.saveAll(Arrays.asList(client, client1));
         telephoneRepository.saveAll(Arrays.asList(telephone, telephone1));
         addressRepository.saveAll(Arrays.asList(address, address1));
-        clientRepository.saveAll(Arrays.asList(client, client1));
+        cityRepository.saveAll(Arrays.asList(city, city1, city2));
+        provinceRepository.saveAll(Arrays.asList(province, province1));
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Request request = new Request(simpleDateFormat.parse("30/09/2017 17:41"), client, address);

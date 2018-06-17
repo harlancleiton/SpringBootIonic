@@ -1,7 +1,7 @@
 package br.harlan.sbi.services.impl;
 
-import br.harlan.sbi.domain.Client;
-import br.harlan.sbi.repositories.ClientRepository;
+import br.harlan.sbi.domain.*;
+import br.harlan.sbi.repositories.*;
 import br.harlan.sbi.services.ClientService;
 import br.harlan.sbi.services.exceptions.DataIntegrityException;
 import br.harlan.sbi.services.exceptions.ObjectNotFoundException;
@@ -13,7 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.ConstraintDeclarationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,14 @@ import java.util.Optional;
 public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private AddressRepository addressRepository;
+    @Autowired
+    private CityRepository cityRepository;
+    @Autowired
+    private ProvinceRepository provinceRepository;
+    @Autowired
+    private TelephoneRepository telephoneRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ClientServiceImpl.class);
 
@@ -64,10 +74,21 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public Client insert(Client client) {
-        client.setId(null);
         LOGGER.info("Persisting client: {}", client);
-        return clientRepository.save(client);
+        client.setId(null);
+        Address address = client.getAddress();
+        address.setClient(client);
+        City city = address.getCity();
+        Province province = city.getProvince();
+        List<Telephone> telephones = client.getTelephones();
+        clientRepository.save(client);
+        telephoneRepository.saveAll(telephones);
+        addressRepository.save(address);
+        cityRepository.save(city);
+        provinceRepository.save(province);
+        return client;
     }
 
     @Override
@@ -84,9 +105,9 @@ public class ClientServiceImpl implements ClientService {
         findById(id);
         try {
             clientRepository.deleteById(id);
-        } catch (DataIntegrityViolationException e) {
+        } catch (DataIntegrityViolationException | ConstraintDeclarationException e) {
             throw new DataIntegrityException(
-                    "It is not possible to exclude a Client containing Products", e.getCause());
+                    "It is not possible to exclude a Client that contains Requests.", e.getCause());
         }
     }
 

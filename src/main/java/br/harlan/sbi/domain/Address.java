@@ -24,7 +24,8 @@ public class Address implements Serializable {
     private String cep;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne//(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "client_id")
     private Client client;
 
     @OneToOne
