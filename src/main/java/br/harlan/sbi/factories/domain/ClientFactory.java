@@ -16,6 +16,7 @@ public class ClientFactory {
         return client;
     }
 
+    @NotNull
     public static Client create(ClientRegistrationDTO clientRegistrationDTO) {
         Client client = new Client();
         client.setEmail(clientRegistrationDTO.getEmail());

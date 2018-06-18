@@ -1,11 +1,13 @@
 package br.harlan.sbi.dtos;
 
+import br.harlan.sbi.services.validators.UpdateClient;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@UpdateClient
 public class ClientDTO implements Serializable {
     private static final long serialVersionUID = 3454406018777249023L;
 
