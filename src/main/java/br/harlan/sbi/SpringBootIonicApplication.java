@@ -45,17 +45,57 @@ public class SpringBootIonicApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Category category = new Category("Informatica");
         Category category1 = new Category("Escritorio");
+        Category cat3 = new Category("Cama mesa e banho");
+        Category cat4 = new Category("Eletrônicos");
+        Category cat5 = new Category("Jardinagem");
+        Category cat6 = new Category("Decoração");
+        Category cat7 = new Category("Perfumaria");
 
-        Product product = new Product("Computador", 2000.00);
-        Product product1 = new Product("Impressora", 900.00);
-        Product product2 = new Product("Mouse", 200.00);
+        Product p1 = new Product("Computador", 2000.00);
+        Product p2 = new Product("Impressora", 800.00);
+        Product p3 = new Product("Mouse", 80.00);
+        Product p4 = new Product("Mesa de escritório", 300.00);
+        Product p5 = new Product("Toalha", 50.00);
+        Product p6 = new Product("Colcha", 200.00);
+        Product p7 = new Product("TV true color", 1200.00);
+        Product p8 = new Product("Roçadeira", 800.00);
+        Product p9 = new Product("Abajour", 100.00);
+        Product p10 = new Product("Pendente", 180.00);
+        Product p11 = new Product("Shampoo", 90.00);
 
-        category.getProducts().addAll(Arrays.asList(product, product2));
-        category1.getProducts().addAll(Arrays.asList(product, product1, product2));
+        category.getProducts().addAll(Arrays.asList(p1, p2, p3));
+        category1.getProducts().addAll(Arrays.asList(p2));
+        p1.getCategories().addAll(Arrays.asList(category));
+        p2.getCategories().addAll(Arrays.asList(category, category1));
+        p3.getCategories().addAll(Arrays.asList(category));
+        category1.getProducts().addAll(Arrays.asList(p2, p4));
+        cat3.getProducts().addAll(Arrays.asList(p5, p6));
+        cat4.getProducts().addAll(Arrays.asList(p1, p2, p3, p7));
+        cat5.getProducts().addAll(Arrays.asList(p8));
+        cat6.getProducts().addAll(Arrays.asList(p9, p10));
+        cat7.getProducts().addAll(Arrays.asList(p11));
+        p1.getCategories().addAll(Arrays.asList(category, cat4));
+        p2.getCategories().addAll(Arrays.asList(category, category1, cat4));
+        p3.getCategories().addAll(Arrays.asList(category, cat4));
+        p4.getCategories().addAll(Arrays.asList(category1));
+        p5.getCategories().addAll(Arrays.asList(cat3));
+        p6.getCategories().addAll(Arrays.asList(cat3));
+        p7.getCategories().addAll(Arrays.asList(cat4));
+        p8.getCategories().addAll(Arrays.asList(cat5));
+        p9.getCategories().addAll(Arrays.asList(cat6));
+        p10.getCategories().addAll(Arrays.asList(cat6));
+        p11.getCategories().addAll(Arrays.asList(cat7));
 
-        product.getCategories().addAll(Arrays.asList(category, category1));
-        product1.getCategories().add(category1);
-        product2.getCategories().addAll(Arrays.asList(category, category1));
+//        Product product = new Product("Computador", 2000.00);
+//        Product product1 = new Product("Impressora", 900.00);
+//        Product product2 = new Product("Mouse", 200.00);
+
+//        category.getProducts().addAll(Arrays.asList(product, product2));
+//        category1.getProducts().addAll(Arrays.asList(product, product1, product2));
+//
+//        product.getCategories().addAll(Arrays.asList(category, category1));
+//        product1.getCategories().add(category1);
+//        product2.getCategories().addAll(Arrays.asList(category, category1));
 
         Province province = new Province();
         Province province1 = new Province();
@@ -118,8 +158,8 @@ public class SpringBootIonicApplication implements CommandLineRunner {
         address1.setCity(city2);
         client1.setAddress(address1);
 
-        categoryRepository.saveAll(Arrays.asList(category, category1));
-        productRepository.saveAll(Arrays.asList(product, product1, product2));
+        categoryRepository.saveAll(Arrays.asList(category, category1, cat3, cat4, cat5, cat6, cat7));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 
         clientRepository.saveAll(Arrays.asList(client, client1));
         telephoneRepository.saveAll(Arrays.asList(telephone, telephone1));
@@ -142,16 +182,16 @@ public class SpringBootIonicApplication implements CommandLineRunner {
         paymentRepository.saveAll(Arrays.asList(payment, payment1));
         clientRepository.save(client);
 
-        RequestItem requestItem = new RequestItem(request, product, 0.00, 1, 2000.00);
-        RequestItem requestItem1 = new RequestItem(request, product2, 0.00, 2, 200.00);
-        RequestItem requestItem2 = new RequestItem(request1, product1, 100.00, 1, 800.00);
+        RequestItem requestItem = new RequestItem(request, p1, 0.00, 1, 2000.00);
+        RequestItem requestItem1 = new RequestItem(request, p3, 0.00, 2, 200.00);
+        RequestItem requestItem2 = new RequestItem(request1, p2, 100.00, 1, 800.00);
 
         request.getRequestItems().addAll(Arrays.asList(requestItem, requestItem1));
         request1.getRequestItems().add(requestItem2);
 
-        product.getRequestItems().add(requestItem);
-        product1.getRequestItems().add(requestItem2);
-        product2.getRequestItems().add(requestItem1);
+        p1.getRequestItems().add(requestItem);
+        p2.getRequestItems().add(requestItem2);
+        p3.getRequestItems().add(requestItem1);
 
         requestItemRepository.saveAll(Arrays.asList(requestItem, requestItem1, requestItem2));
     }
