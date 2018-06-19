@@ -90,13 +90,18 @@ public class Request implements Serializable {
         this.requestItems = requestItems;
     }
 
+    public Double getTotalPrice() {
+        double total = 0.0;
+        for (RequestItem requestItem : this.requestItems)
+            total = total + requestItem.getSubTotal();
+        return total;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Request request = (Request) o;
-
         return id != null ? id.equals(request.id) : request.id == null;
     }
 

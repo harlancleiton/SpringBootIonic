@@ -72,6 +72,10 @@ public class RequestItem implements Serializable {
         this.price = price;
     }
 
+    public Double getSubTotal() {
+        return (price - discount) * amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,9 +92,11 @@ public class RequestItem implements Serializable {
     @Override
     public String toString() {
         return "RequestItem{" +
-                "discount=" + discount +
+                "id=" + id +
+                ", discount=" + discount +
                 ", amount=" + amount +
                 ", price=" + price +
+                ", subTotal=" + getSubTotal() +
                 '}';
     }
 }
