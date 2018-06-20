@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface RequestService {
     Optional<Request> findById(Long id);
+
+    Request insert(Request request);
 }

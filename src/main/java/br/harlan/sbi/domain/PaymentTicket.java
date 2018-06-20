@@ -2,11 +2,13 @@ package br.harlan.sbi.domain;
 
 import br.harlan.sbi.domain.enuns.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
+@JsonTypeName("paymentCredit")
 public class PaymentTicket extends Payment {
     private static final long serialVersionUID = 5915360530999426148L;
 

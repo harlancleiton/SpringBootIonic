@@ -27,4 +27,10 @@ public class RequestServiceImpl implements RequestService {
         ;
         return request;
     }
+
+    @Override
+    public Request insert(Request request) {
+        LOGGER.info("Persisting request: {}", request);
+        return requestRepository.save(request);
+    }
 }
