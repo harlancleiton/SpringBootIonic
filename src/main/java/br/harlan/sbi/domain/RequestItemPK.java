@@ -55,4 +55,12 @@ public class RequestItemPK implements Serializable {
         result = 31 * result + product.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "RequestItemPK{" +
+                "request=" + request +
+                ", product=" + product +
+                '}';
+    }
 }

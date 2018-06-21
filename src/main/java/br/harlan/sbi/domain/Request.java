@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.*;
 
 @Entity
@@ -110,10 +111,18 @@ public class Request implements Serializable {
 
     @Override
     public String toString() {
-        return "Request{" +
-                "id=" + id +
-                ", instant=" + instant +
-                ", payment=" + payment +
-                '}';
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        final StringBuilder sb = new StringBuilder("Request{");
+        sb.append("id=").append(id);
+        sb.append(", instant=").append(instant);
+        sb.append(", address=").append(address);
+        sb.append(", payment=").append(payment);
+        sb.append(", client=").append(client.getName());
+        sb.append(", requestItem=");
+        for (RequestItem item : requestItem)
+            sb.append(item.toString());
+        sb.append(", totalPrice=").append(numberFormat.format(getTotalPrice()));
+        sb.append('}');
+        return sb.toString();
     }
 }

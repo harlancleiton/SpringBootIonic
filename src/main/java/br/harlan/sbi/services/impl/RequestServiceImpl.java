@@ -1,12 +1,12 @@
 package br.harlan.sbi.services.impl;
 
-import br.harlan.sbi.domain.PaymentTicket;
-import br.harlan.sbi.domain.Request;
-import br.harlan.sbi.domain.RequestItem;
+import br.harlan.sbi.domain.*;
 import br.harlan.sbi.domain.enuns.PaymentStatus;
+import br.harlan.sbi.repositories.AddressRepository;
 import br.harlan.sbi.repositories.PaymentRepository;
 import br.harlan.sbi.repositories.RequestItemRepository;
 import br.harlan.sbi.repositories.RequestRepository;
+import br.harlan.sbi.services.ClientService;
 import br.harlan.sbi.services.ProductService;
 import br.harlan.sbi.services.RequestService;
 import br.harlan.sbi.services.TicketService;
@@ -32,6 +32,10 @@ public class RequestServiceImpl implements RequestService {
     ProductService productService;
     @Autowired
     RequestItemRepository requestItemRepository;
+    @Autowired
+    ClientService clientService;
+    @Autowired
+    AddressRepository addressRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RequestServiceImpl.class);
 
@@ -51,6 +55,10 @@ public class RequestServiceImpl implements RequestService {
         LOGGER.info("Persisting request: {}", request);
         request.setId(null);
         request.setInstant(new Date());
+        Client client = clientService.findById(request.getClient().getId()).get();
+        request.setClient(client);
+        Address address = addressRepository.findById(request.getAddress().getId()).get();
+        request.setAddress(address);
         request.getPayment().setPaymentStatus(PaymentStatus.PENDING);
         request.getPayment().setRequest(request);
         if (request.getPayment() instanceof PaymentTicket) {
@@ -61,11 +69,12 @@ public class RequestServiceImpl implements RequestService {
         paymentRepository.save(request.getPayment());
         for (RequestItem requestItem : request.getRequestItem()) {
             requestItem.setDiscount(0.0);
-            requestItem.setPrice(
-                    productService.findById(requestItem.getProduct().getId()).get().getPrice());
+            requestItem.setProduct(productService.findById(requestItem.getProduct().getId()).get());
+            requestItem.setPrice(requestItem.getProduct().getPrice());
             requestItem.setRequest(request);
         }
         requestItemRepository.saveAll(request.getRequestItem());
+        LOGGER.info("Request: {}", request);
         return requestRepository.save(request);
     }
 }
