@@ -38,4 +38,11 @@ public class ProductServiceImpl implements ProductService {
         List<Category> categories = categoryRepository.findAllById(ids);
         return productRepository.findDistinctByNameContainingAndCategoriesIn(name, categories, pageRequest);
     }
+
+    @Override
+    public Product insert(Product product) {
+        product.setId(null);
+        LOGGER.info("Persisting category: {}", product);
+        return productRepository.save(product);
+    }
 }

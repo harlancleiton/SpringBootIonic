@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Request implements Serializable {
@@ -17,7 +15,7 @@ public class Request implements Serializable {
     private Long id;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private Date instante;
+    private Date instant;
 
     @ManyToOne
     private Address address;
@@ -26,7 +24,7 @@ public class Request implements Serializable {
     private Client client;
 
     @OneToMany(mappedBy = "id.request")
-    private Set<RequestItem> requestItems;
+    private List<RequestItem> requestItem;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "request")
     private Payment payment;
@@ -34,8 +32,8 @@ public class Request implements Serializable {
     public Request() {
     }
 
-    public Request(Date instante, Client client, Address address) {
-        this.instante = instante;
+    public Request(Date instant, Client client, Address address) {
+        this.instant = instant;
         this.address = address;
         this.client = client;
     }
@@ -48,12 +46,12 @@ public class Request implements Serializable {
         this.id = id;
     }
 
-    public Date getInstante() {
-        return instante;
+    public Date getInstant() {
+        return instant;
     }
 
-    public void setInstante(Date instante) {
-        this.instante = instante;
+    public void setInstant(Date instant) {
+        this.instant = instant;
     }
 
     public Client getClient() {
@@ -80,19 +78,19 @@ public class Request implements Serializable {
         this.payment = payment;
     }
 
-    public Set<RequestItem> getRequestItems() {
-        if (requestItems == null)
-            requestItems = new HashSet<>();
-        return requestItems;
+    public List<RequestItem> getRequestItem() {
+        if (requestItem == null)
+            requestItem = new ArrayList<>();
+        return requestItem;
     }
 
-    public void setRequestItems(Set<RequestItem> requestItems) {
-        this.requestItems = requestItems;
+    public void setRequestItem(List<RequestItem> requestItem) {
+        this.requestItem = requestItem;
     }
 
     public Double getTotalPrice() {
         double total = 0.0;
-        for (RequestItem requestItem : this.requestItems)
+        for (RequestItem requestItem : this.requestItem)
             total = total + requestItem.getSubTotal();
         return total;
     }
@@ -114,7 +112,7 @@ public class Request implements Serializable {
     public String toString() {
         return "Request{" +
                 "id=" + id +
-                ", instante=" + instante +
+                ", instant=" + instant +
                 ", payment=" + payment +
                 '}';
     }

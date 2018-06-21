@@ -5,7 +5,7 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UrlUtil {//
+public class UrlUtil {
     public static List<Long> decodeLongId(String s) {
         String[] strings = s.split(",");
         List<Long> list = new ArrayList<>();

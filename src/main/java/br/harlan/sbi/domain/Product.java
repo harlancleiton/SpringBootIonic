@@ -23,12 +23,12 @@ public class Product implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "id.product")
-    private Set<RequestItem> requestItems;
+    private Set<RequestItem> requestItem = new HashSet<>();
 
     @JsonIgnore
     @ManyToMany
-    //@JoinTable(name = "PRODUCT_CATEGORY", joinColumns = @JoinColumn(name = "product_id"),
-    //        inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @JoinTable(name = "PRODUCT_CATEGORY", joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories = new ArrayList<>();
 
     public Product() {
@@ -42,7 +42,7 @@ public class Product implements Serializable {
     @JsonIgnore
     public List<Request> getRequests() {
         List<Request> requests = new ArrayList<>();
-        for (RequestItem requestItem : requestItems)
+        for (RequestItem requestItem : requestItem)
             requests.add(requestItem.getRequest());
         return requests;
     }
@@ -81,14 +81,14 @@ public class Product implements Serializable {
         this.categories = categories;
     }
 
-    public Set<RequestItem> getRequestItems() {
-        if (requestItems == null)
-            requestItems = new HashSet<>();
-        return requestItems;
+    public Set<RequestItem> getRequestItem() {
+        if (requestItem == null)
+            requestItem = new HashSet<>();
+        return requestItem;
     }
 
-    public void setRequestItems(Set<RequestItem> requestItems) {
-        this.requestItems = requestItems;
+    public void setRequestItem(Set<RequestItem> requestItem) {
+        this.requestItem = requestItem;
     }
 
     @Override

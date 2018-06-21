@@ -10,4 +10,6 @@ public interface ProductService {
     Optional<Product> findById(Long id);
 
     Page<Product> findPage(String name, List<Long> ids, Integer page, Integer linesPerPage, String direction, String orderBy);
+
+    Product insert(Product product);
 }

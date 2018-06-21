@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity
 public class RequestItem implements Serializable {
-    private static final long serialVersionUID = 2335885604844882206L;
+    private static final long serialVersionUID = 6841863494583469656L;
 
     @JsonIgnore
     @EmbeddedId
@@ -36,8 +36,16 @@ public class RequestItem implements Serializable {
         return id.getRequest();
     }
 
+    public void setRequest(Request request) {
+        id.setRequest(request);
+    }
+
     public Product getProduct() {
         return id.getProduct();
+    }
+
+    public void setProduct(Product product) {
+        id.setProduct(product);
     }
 
     public RequestItemPK getId() {

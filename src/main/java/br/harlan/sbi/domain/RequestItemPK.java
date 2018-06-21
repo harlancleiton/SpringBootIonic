@@ -1,6 +1,7 @@
 package br.harlan.sbi.domain;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
@@ -9,8 +10,10 @@ public class RequestItemPK implements Serializable {
     private static final long serialVersionUID = 8098166299626322737L;
 
     @ManyToOne
+    @JoinColumn(name = "request_id")
     private Request request;
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public RequestItemPK() {

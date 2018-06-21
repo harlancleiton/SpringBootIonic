@@ -186,12 +186,12 @@ public class SpringBootIonicApplication implements CommandLineRunner {
         RequestItem requestItem1 = new RequestItem(request, p3, 0.00, 2, 200.00);
         RequestItem requestItem2 = new RequestItem(request1, p2, 100.00, 1, 800.00);
 
-        request.getRequestItems().addAll(Arrays.asList(requestItem, requestItem1));
-        request1.getRequestItems().add(requestItem2);
+        request.getRequestItem().addAll(Arrays.asList(requestItem, requestItem1));
+        request1.getRequestItem().add(requestItem2);
 
-        p1.getRequestItems().add(requestItem);
-        p2.getRequestItems().add(requestItem2);
-        p3.getRequestItems().add(requestItem1);
+        p1.getRequestItem().add(requestItem);
+        p2.getRequestItem().add(requestItem2);
+        p3.getRequestItem().add(requestItem1);
 
         requestItemRepository.saveAll(Arrays.asList(requestItem, requestItem1, requestItem2));
     }

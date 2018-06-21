@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
-@JsonTypeName("paymentCredit")
+@JsonTypeName("paymentTicket")
 public class PaymentTicket extends Payment {
     private static final long serialVersionUID = 5915360530999426148L;
 
