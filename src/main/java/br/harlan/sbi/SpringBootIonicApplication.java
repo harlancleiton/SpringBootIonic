@@ -16,11 +16,9 @@ import java.util.Arrays;
 @SpringBootApplication
 public class SpringBootIonicApplication implements CommandLineRunner {
 
-
     public static void main(String[] args) {
         SpringApplication.run(SpringBootIonicApplication.class, args);
     }
-
 
     @Override
     public void run(String... args) throws Exception {
