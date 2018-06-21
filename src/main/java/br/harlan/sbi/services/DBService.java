@@ -127,11 +127,13 @@ public class DBService {
         Client client1 = new Client();
 
         client.setName("Maria Silva");
+        client.setEmail("mariateste@mail.com");
         client.setClientType(ClientType.PHYSICAL_PERSON);
         client.setCpfCnpj("87782461480");
         client.getTelephones().add(telephone);
 
         client1.setName("João Silva");
+        client1.setEmail("teste@mail.com");
         client1.setClientType(ClientType.LEGAL_PERSON);
         client1.setCpfCnpj("51418224278");
         client1.getTelephones().add(telephone1);

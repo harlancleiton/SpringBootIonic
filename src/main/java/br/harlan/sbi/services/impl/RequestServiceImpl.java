@@ -6,10 +6,7 @@ import br.harlan.sbi.repositories.AddressRepository;
 import br.harlan.sbi.repositories.PaymentRepository;
 import br.harlan.sbi.repositories.RequestItemRepository;
 import br.harlan.sbi.repositories.RequestRepository;
-import br.harlan.sbi.services.ClientService;
-import br.harlan.sbi.services.ProductService;
-import br.harlan.sbi.services.RequestService;
-import br.harlan.sbi.services.TicketService;
+import br.harlan.sbi.services.*;
 import br.harlan.sbi.services.exceptions.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +33,8 @@ public class RequestServiceImpl implements RequestService {
     ClientService clientService;
     @Autowired
     AddressRepository addressRepository;
+    @Autowired
+    EmailService emailService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RequestServiceImpl.class);
 
@@ -74,6 +73,7 @@ public class RequestServiceImpl implements RequestService {
             requestItem.setRequest(request);
         }
         requestItemRepository.saveAll(request.getRequestItem());
+        emailService.sentOrderConfirmationEmail(request);
         LOGGER.info("Request: {}", request);
         return requestRepository.save(request);
     }
