@@ -1,7 +1,7 @@
-package br.harlan.sbi.factories.domain;
+package br.harlan.sbi.factory.domain;
 
 import br.harlan.sbi.domain.Address;
-import br.harlan.sbi.dtos.AddressDTO;
+import br.harlan.sbi.dto.AddressDTO;
 
 public class AddressFactory {
     public static Address create(AddressDTO addressDTO) {

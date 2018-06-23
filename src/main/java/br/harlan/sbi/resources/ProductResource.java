@@ -1,8 +1,8 @@
 package br.harlan.sbi.resources;
 
 import br.harlan.sbi.domain.Product;
-import br.harlan.sbi.dtos.ProductDTO;
-import br.harlan.sbi.factories.dtos.ProductDTOFactory;
+import br.harlan.sbi.dto.ProductDTO;
+import br.harlan.sbi.factory.dtos.ProductDTOFactory;
 import br.harlan.sbi.response.Response;
 import br.harlan.sbi.services.ProductService;
 import br.harlan.sbi.utils.UrlUtil;

@@ -1,7 +1,7 @@
-package br.harlan.sbi.factories.domain;
+package br.harlan.sbi.factory.domain;
 
 import br.harlan.sbi.domain.Province;
-import br.harlan.sbi.dtos.ProvinceDTO;
+import br.harlan.sbi.dto.ProvinceDTO;
 
 public class ProvinceFactory {
     public static Province create(ProvinceDTO provinceDTO) {

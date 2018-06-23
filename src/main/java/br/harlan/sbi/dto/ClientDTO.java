@@ -1,4 +1,4 @@
-package br.harlan.sbi.dtos;
+package br.harlan.sbi.dto;
 
 import br.harlan.sbi.services.validators.UpdateClient;
 import org.hibernate.validator.constraints.Length;

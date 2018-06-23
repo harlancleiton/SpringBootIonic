@@ -1,7 +1,7 @@
-package br.harlan.sbi.factories.domain;
+package br.harlan.sbi.factory.domain;
 
 import br.harlan.sbi.domain.City;
-import br.harlan.sbi.dtos.CityDTO;
+import br.harlan.sbi.dto.CityDTO;
 
 public class CityFactory {
     public static City create(CityDTO cityDTO) {

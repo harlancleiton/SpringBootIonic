@@ -1,4 +1,4 @@
-package br.harlan.sbi.dtos;
+package br.harlan.sbi.dto;
 
 public class TelephoneDTO {
     private Long id;

@@ -1,7 +1,7 @@
-package br.harlan.sbi.factories.domain;
+package br.harlan.sbi.factory.domain;
 
 import br.harlan.sbi.domain.Telephone;
-import br.harlan.sbi.dtos.TelephoneDTO;
+import br.harlan.sbi.dto.TelephoneDTO;
 
 public class TelephoneFactory {
     public static Telephone create(TelephoneDTO telephoneDTO) {

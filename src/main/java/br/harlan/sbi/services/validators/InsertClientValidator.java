@@ -2,7 +2,7 @@ package br.harlan.sbi.services.validators;
 
 import br.harlan.sbi.domain.Client;
 import br.harlan.sbi.domain.enuns.ClientType;
-import br.harlan.sbi.dtos.ClientRegistrationDTO;
+import br.harlan.sbi.dto.ClientRegistrationDTO;
 import br.harlan.sbi.response.FieldMessage;
 import br.harlan.sbi.services.ClientService;
 import br.harlan.sbi.services.exceptions.ObjectNotFoundException;

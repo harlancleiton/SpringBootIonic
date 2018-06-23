@@ -1,9 +1,9 @@
 package br.harlan.sbi.resources;
 
 import br.harlan.sbi.domain.Category;
-import br.harlan.sbi.dtos.CategoryDTO;
-import br.harlan.sbi.factories.domain.CategoryFactory;
-import br.harlan.sbi.factories.dtos.CategoryDTOFactory;
+import br.harlan.sbi.dto.CategoryDTO;
+import br.harlan.sbi.factory.domain.CategoryFactory;
+import br.harlan.sbi.factory.dtos.CategoryDTOFactory;
 import br.harlan.sbi.response.Response;
 import br.harlan.sbi.services.CategoryService;
 import org.slf4j.Logger;

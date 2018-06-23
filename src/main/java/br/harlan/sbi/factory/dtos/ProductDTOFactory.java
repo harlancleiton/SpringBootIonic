@@ -1,7 +1,7 @@
-package br.harlan.sbi.factories.dtos;
+package br.harlan.sbi.factory.dtos;
 
 import br.harlan.sbi.domain.Product;
-import br.harlan.sbi.dtos.ProductDTO;
+import br.harlan.sbi.dto.ProductDTO;
 import org.jetbrains.annotations.NotNull;
 
 public class ProductDTOFactory {

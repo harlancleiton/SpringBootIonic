@@ -1,4 +1,4 @@
-package br.harlan.sbi.dtos;
+package br.harlan.sbi.dto;
 
 import br.harlan.sbi.services.validators.InsertClient;
 import org.hibernate.validator.constraints.Length;
@@ -20,6 +20,10 @@ public class ClientRegistrationDTO implements Serializable {
     @NotEmpty(message = "Email can not be empty.")
     @Email(message = "Invalid email.")
     private String email;
+
+    @NotEmpty(message = "Password can not be empty.")
+    @Length(min = 6, max = 24, message = "The size must be between 6 and 24 characters.")
+    private String password;
 
     //@NotEmpty(message = "CPF can not be empty.")
     //@CPF(message = "Invalid CPF.")
@@ -54,6 +58,14 @@ public class ClientRegistrationDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCpfCnpj() {

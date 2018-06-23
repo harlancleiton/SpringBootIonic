@@ -1,10 +1,10 @@
 package br.harlan.sbi.resources;
 
 import br.harlan.sbi.domain.Client;
-import br.harlan.sbi.dtos.ClientDTO;
-import br.harlan.sbi.dtos.ClientRegistrationDTO;
-import br.harlan.sbi.factories.domain.ClientFactory;
-import br.harlan.sbi.factories.dtos.ClientDTOFactory;
+import br.harlan.sbi.dto.ClientDTO;
+import br.harlan.sbi.dto.ClientRegistrationDTO;
+import br.harlan.sbi.factory.domain.ClientFactory;
+import br.harlan.sbi.factory.dtos.ClientDTOFactory;
 import br.harlan.sbi.response.Response;
 import br.harlan.sbi.services.ClientService;
 import org.slf4j.Logger;

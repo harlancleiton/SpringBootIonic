@@ -4,8 +4,8 @@ import br.harlan.sbi.domain.*;
 import br.harlan.sbi.domain.enuns.ClientType;
 import br.harlan.sbi.domain.enuns.PaymentStatus;
 import br.harlan.sbi.repositories.*;
+import br.harlan.sbi.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -128,12 +128,14 @@ public class DBService {
 
         client.setName("Maria Silva");
         client.setEmail("harlancleiton@gmail.com");
+        client.setPassword(PasswordUtil.encoder("123"));
         client.setClientType(ClientType.PHYSICAL_PERSON);
         client.setCpfCnpj("87782461480");
         client.getTelephones().add(telephone);
 
         client1.setName("João Silva");
         client1.setEmail("harlancleiton@gmail.com");
+        client1.setPassword(PasswordUtil.encoder("123"));
         client1.setClientType(ClientType.LEGAL_PERSON);
         client1.setCpfCnpj("51418224278");
         client1.getTelephones().add(telephone1);

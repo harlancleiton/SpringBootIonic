@@ -1,7 +1,7 @@
 package br.harlan.sbi.services.validators;
 
 import br.harlan.sbi.domain.Client;
-import br.harlan.sbi.dtos.ClientDTO;
+import br.harlan.sbi.dto.ClientDTO;
 import br.harlan.sbi.response.FieldMessage;
 import br.harlan.sbi.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package br.harlan.sbi.factories.dtos;
+package br.harlan.sbi.factory.dtos;
 
 import br.harlan.sbi.domain.Telephone;
-import br.harlan.sbi.dtos.TelephoneDTO;
+import br.harlan.sbi.dto.TelephoneDTO;
 import org.jetbrains.annotations.NotNull;
 
 public class TelephoneDTOFactory {
