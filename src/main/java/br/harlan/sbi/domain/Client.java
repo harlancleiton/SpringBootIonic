@@ -1,12 +1,15 @@
 package br.harlan.sbi.domain;
 
+import br.harlan.sbi.domain.enuns.ClientProfileType;
 import br.harlan.sbi.domain.enuns.ClientType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Client implements Serializable {
@@ -32,6 +35,11 @@ public class Client implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Telephone> telephones;
+
+    @ElementCollection
+    //@CollectionTable
+    @Enumerated
+    private Set<ClientProfileType> profiles;
 
     @JsonIgnore
     @OneToMany
@@ -101,6 +109,16 @@ public class Client implements Serializable {
         this.telephones = telephones;
     }
 
+    public Set<ClientProfileType> getProfiles() {
+        if (profiles == null)
+            profiles = new HashSet<>();
+        return profiles;
+    }
+
+    public void setProfiles(Set<ClientProfileType> profiles) {
+        this.profiles = profiles;
+    }
+
     public ClientType getClientType() {
         return clientType;
     }
@@ -140,6 +158,8 @@ public class Client implements Serializable {
                 ", email='" + email + '\'' +
                 ", cpfCnpj='" + cpfCnpj + '\'' +
                 ", address=" + address +
+                ", telephones=" + telephones +
+                ", profiles=" + profiles +
                 ", clientType=" + clientType +
                 '}';
     }

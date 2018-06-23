@@ -1,8 +1,8 @@
 package br.harlan.sbi.config;
 
-import br.harlan.sbi.services.DBService;
 import br.harlan.sbi.services.EmailService;
 import br.harlan.sbi.services.impl.EmailServiceImpl;
+import br.harlan.sbi.utils.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

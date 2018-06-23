@@ -1,6 +1,7 @@
 package br.harlan.sbi.services.impl;
 
 import br.harlan.sbi.domain.*;
+import br.harlan.sbi.domain.enuns.ClientProfileType;
 import br.harlan.sbi.repositories.*;
 import br.harlan.sbi.services.ClientService;
 import br.harlan.sbi.services.exceptions.DataIntegrityException;
@@ -85,6 +86,7 @@ public class ClientServiceImpl implements ClientService {
     public Client insert(Client client) {
         LOGGER.info("Persisting client: {}", client);
         client.setId(null);
+        client.getProfiles().add(ClientProfileType.ROLE_CLIENT);
         Address address = client.getAddress();
         address.setClient(client);
         City city = address.getCity();
