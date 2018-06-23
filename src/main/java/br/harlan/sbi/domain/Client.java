@@ -21,7 +21,7 @@ public class Client implements Serializable {
 
     private String name;
 
-    //@Column(unique = true)
+    @Column(unique = true)
     private String email;
 
     @JsonIgnore
@@ -36,7 +36,7 @@ public class Client implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Telephone> telephones;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     //@CollectionTable
     @Enumerated
     private Set<ClientProfileType> profiles;

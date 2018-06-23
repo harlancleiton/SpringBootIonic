@@ -136,7 +136,7 @@ public class DBService {
         client.getTelephones().add(telephone);
 
         client1.setName("João Silva");
-        client1.setEmail("harlancleiton@gmail.com");
+        client1.setEmail("harlan@itech.net.br");
         client1.setPassword(PasswordUtil.encoder("123"));
         client1.getProfiles().add(ClientProfileType.ROLE_CLIENT);
         client1.setClientType(ClientType.LEGAL_PERSON);
