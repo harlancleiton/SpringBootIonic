@@ -1,5 +1,6 @@
 package br.harlan.sbi.utils;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
@@ -32,5 +33,33 @@ public class JWTUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + expirationDays * millisToDay))
                 .signWith(SignatureAlgorithm.HS512, secret.getBytes())
                 .compact();
+    }
+
+    private Claims getClaims(String token) {
+        try {
+            return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    public boolean tokenIsValid(String token) {
+        Claims claims = getClaims(token);
+        if (claims != null) {
+            String username = claims.getSubject();
+            Date expiration = claims.getExpiration();
+            Date now = new Date(System.currentTimeMillis());
+            if (username != null && expiration != null && now.before(expiration))
+                return true;
+        }
+        return false;
+    }
+
+    public String getUsernameFromToken(String token) {
+        Claims claims = getClaims(token);
+        if (claims != null)
+            return claims.getSubject();
+        return null;
     }
 }

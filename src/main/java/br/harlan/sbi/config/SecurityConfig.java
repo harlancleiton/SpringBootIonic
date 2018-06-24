@@ -1,6 +1,8 @@
 package br.harlan.sbi.config;
 
 import br.harlan.sbi.security.JWTAuthenticationFilter;
+import br.harlan.sbi.security.JWTAuthorizationFilter;
+import br.harlan.sbi.services.impl.UserDetailServiceImpl;
 import br.harlan.sbi.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JWTUtil jwtUtil;
 
     private static final String[] PUBLIC_MATCHERS = {
-            "/h2-console/**", "/api/products/**", "/api/categories/**", "/login/**"
+            "/h2-console/**", "/api/products/**", "/api/categories/**"
     };
 
     @Override
@@ -44,8 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .anyRequest().authenticated();
         http.addFilter(new JWTAuthenticationFilter(jwtUtil, authenticationManager()));
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
     }
 
     @Override
@@ -63,5 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserDetailServiceImpl();
     }
 }

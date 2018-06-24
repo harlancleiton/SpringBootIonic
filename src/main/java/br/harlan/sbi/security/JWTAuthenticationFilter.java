@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private static final String AUTH_HEADER = "Authorization";
+
     private static final String BEARER_PREFIX = "Bearer ";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
