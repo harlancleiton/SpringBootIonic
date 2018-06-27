@@ -2,7 +2,7 @@ package br.harlan.sbi.config;
 
 import br.harlan.sbi.services.EmailService;
 import br.harlan.sbi.services.impl.EmailServiceImpl;
-import br.harlan.sbi.utils.DBService;
+import br.harlan.sbi.utils.PopulateData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 @Profile("dev")
 public class ProfileDevConfig {
     @Autowired
-    DBService dbService;
+    PopulateData populateData;
 
     @Value("${spring.jpa.hibernate.ddl-auto}")
     private String strategyDdlAuto;
@@ -21,7 +21,7 @@ public class ProfileDevConfig {
     @Bean
     public boolean instantiateDatabase() throws Exception {
         if (strategyDdlAuto.equals("create"))
-            dbService.instantiateTestDatabase();
+            populateData.instantiateTestDatabase();
         return true;
     }
 

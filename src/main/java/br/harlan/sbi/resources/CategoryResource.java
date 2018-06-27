@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -22,7 +23,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/categories")
-//@CrossOrigin(origins = "*")
 public class CategoryResource {
     @Autowired
     CategoryService categoryService;
@@ -64,6 +64,7 @@ public class CategoryResource {
         return ResponseEntity.ok().body(response);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Response<CategoryDTO>> insert(@Valid @RequestBody CategoryDTO categoryDTO) {
         LOGGER.info("Inserting Category: {}", categoryDTO);

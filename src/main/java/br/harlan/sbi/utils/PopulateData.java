@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @Service
-public class DBService {
+public class PopulateData {
     //region Variables
     @Autowired
     private CategoryRepository categoryRepository;
